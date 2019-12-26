@@ -1,0 +1,32 @@
+<div class="row col" style="margin: 10px">
+  <button class="btn btn-primary" [routerLink]="'/create-project'">
+    Create Project
+  </button>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+      <th>Company</th>
+      <th>Country</th>
+      <th>Ship Date</th>
+      <th>Assigned</th>
+      <th>Status</th>
+      <th>Type</th>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let item of ProjectList">
+        <td>{{item.Company}}</td>
+        <td>{{item.Country}}</td>
+        <td>{{item.ShipDate| date:'short'}}</td>
+        <td>{{item.Assigned}}</td>
+        <td>{{item.ProjectType}}</td>
+        <td>{{item.Status}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
