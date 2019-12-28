@@ -1,0 +1,132 @@
+{
+  "projects": [
+    {
+      "Id": 1,
+      "Country": "Iran",
+      "AddressLine1": "Address 1",
+      "AddressLine2": "Address 2",
+      "City": "Tehran",
+      "Communication": [
+        {
+          "key": "SMS",
+          "value": "false"
+        },
+        {
+          "key": "Email",
+          "value": "false"
+        },
+        {
+          "key": "Phone",
+          "value": "true"
+        }
+      ],
+      "CompanySite": "https//site.com",
+      "ContactPhone": "021898989",
+      "CustomerName": "Customer 1",
+      "Language": "en",
+      "PostCode": "021",
+      "ProjectEmailAddress": "company@site.com",
+      "ProjectName": "Project1",
+      "ProjectOwner": "Project owner",
+      "SettingEmailAddress": "setting@site.com",
+      "State": "Arizona",
+      "TimeZone": "Tehran +330"
+    },
+    {
+      "Id": 2,
+      "Country": "Iran",
+      "AddressLine1": "Address 1",
+      "AddressLine2": "Address 2",
+      "City": "Tehran",
+      "Communication": [
+        {
+          "key": "SMS",
+          "value": "false"
+        },
+        {
+          "key": "Email",
+          "value": "false"
+        },
+        {
+          "key": "Phone",
+          "value": "true"
+        }
+      ],
+      "CompanySite": "https//site.com",
+      "ContactPhone": "021898989",
+      "CustomerName": "Customer 1",
+      "Language": "en",
+      "PostCode": "021",
+      "ProjectEmailAddress": "company@site.com",
+      "ProjectName": "Project1",
+      "ProjectOwner": "Project owner",
+      "SettingEmailAddress": "setting@site.com",
+      "State": "Arizona",
+      "TimeZone": "Tehran +330"
+    },
+    {
+      "Id": 3,
+      "Country": "Iran",
+      "AddressLine1": "Address 1",
+      "AddressLine2": "Address 2",
+      "City": "Tehran",
+      "Communication": [
+        {
+          "key": "SMS",
+          "value": "false"
+        },
+        {
+          "key": "Email",
+          "value": "false"
+        },
+        {
+          "key": "Phone",
+          "value": "true"
+        }
+      ],
+      "CompanySite": "https//site.com",
+      "ContactPhone": "021898989",
+      "CustomerName": "Customer 1",
+      "Language": "en",
+      "PostCode": "021",
+      "ProjectEmailAddress": "company@site.com",
+      "ProjectName": "Project1",
+      "ProjectOwner": "Project owner",
+      "SettingEmailAddress": "setting@site.com",
+      "State": "Arizona",
+      "TimeZone": "Tehran +330"
+    },
+    {
+      "Id": 4,
+      "Country": "Iran",
+      "AddressLine1": "Address 1",
+      "AddressLine2": "Address 2",
+      "City": "Tehran",
+      "Communication": [
+        {
+          "key": "SMS",
+          "value": "false"
+        },
+        {
+          "key": "Email",
+          "value": "false"
+        },
+        {
+          "key": "Phone",
+          "value": "true"
+        }
+      ],
+      "CompanySite": "https//site.com",
+      "ContactPhone": "021898989",
+      "CustomerName": "Customer 1",
+      "Language": "en",
+      "PostCode": "021",
+      "ProjectEmailAddress": "company@site.com",
+      "ProjectName": "Project1",
+      "ProjectOwner": "Project owner",
+      "SettingEmailAddress": "setting@site.com",
+      "State": "Arizona",
+      "TimeZone": "Tehran +330"
+    }
+  ]
+}
