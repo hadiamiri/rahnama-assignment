@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ProjectItem} from "./interfaces/project-interfaces";
 import {Observable} from "rxjs";
 
@@ -7,13 +7,19 @@ import {Observable} from "rxjs";
 export class ProjectService {
 
   private projectsUrl = 'http://localhost:3000/projects';
+  private httpOptions = {
+    headers: new HttpHeaders({"Content-Type": "application/json"})
+  };
 
   constructor(private http: HttpClient) {
   }
 
 
-  getProjects() : Observable<ProjectItem[]>{
-    debugger
+  getProjects(): Observable<ProjectItem[]> {
     return this.http.get<ProjectItem[]>(this.projectsUrl)
+  }
+
+  addProject(projectItem: ProjectItem): Observable<ProjectItem> {
+    return this.http.post<ProjectItem>(this.projectsUrl, projectItem, this.httpOptions);
   }
 }

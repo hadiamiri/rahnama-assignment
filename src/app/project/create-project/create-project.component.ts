@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators, FormArray} from "@angular/forms";
 import {atLeastOneValidator} from "../../core/custom-validator";
+import {ProjectService} from "../../shared/project-service";
+import {ProjectItem} from "../../shared/interfaces/project-interfaces";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'rh-create-project',
@@ -19,9 +22,10 @@ export class CreateProjectComponent implements OnInit {
 
   currentStep: string;
   currentStepCount: number;
-  selectedCommunications: string[];
+  selectedCommunications: { key: string, value: boolean }[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private projectService: ProjectService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -52,12 +56,12 @@ export class CreateProjectComponent implements OnInit {
   });
 
   deliveryStatusForm = this.formBuilder.group({
-    AddressLine1: ['', Validators.required],
-    AddressLine2: ['', Validators.required],
-    PostCode: ['', Validators.required],
-    City: ['', Validators.required],
-    State: ['', Validators.required],
-    Country: ['', Validators.required]
+    addressLine1: ['', Validators.required],
+    addressLine2: ['', Validators.required],
+    postCode: ['', Validators.required],
+    city: ['', Validators.required],
+    state: ['', Validators.required],
+    country: ['', Validators.required]
   });
 
 
@@ -74,10 +78,12 @@ export class CreateProjectComponent implements OnInit {
   }
 
   communicationCheckboxChange() {
-    let selectedCommunications: string[] = [];
+    let selectedCommunications: { key: string, value: boolean }[] = [];
     this.communicationsArray.controls.forEach((control, index) => {
       if (control.value) {
-        selectedCommunications.push(this.Communications[index].type);
+        selectedCommunications.push({key: this.Communications[index].type, value: true});
+      } else {
+        selectedCommunications.push({key: this.Communications[index].type, value: false});
       }
     });
 
@@ -108,8 +114,32 @@ export class CreateProjectComponent implements OnInit {
   }
 
   finalSubmit() {
-    console.log(this.projectDetailForm.value);
-    console.log(this.projectSettingsForm.value);
-    console.log(this.deliveryStatusForm.value);
+    let projectItem = {
+      Id: Math.ceil(Math.random() * 100),
+      ProjectName: this.projectDetailForm.value.projectName,
+      ProjectOwner: this.projectDetailForm.value.projectOwner,
+      CustomerName: this.projectDetailForm.value.customerName,
+      ContactPhone: this.projectDetailForm.value.contactPhone,
+      ProjectEmailAddress: this.projectDetailForm.value.emailAddress,
+      CompanySite: this.projectDetailForm.value.companySite,
+      SettingEmailAddress: this.projectSettingsForm.value.emailAddress,
+      Language: this.projectSettingsForm.value.language,
+      TimeZone: this.projectSettingsForm.value.timeZone,
+      Communication: this.projectSettingsForm.value.communications,
+      AddressLine1: this.deliveryStatusForm.value.addressLine1,
+      AddressLine2: this.deliveryStatusForm.value.addressLine2,
+      PostCode: this.deliveryStatusForm.value.postCode,
+      City: this.deliveryStatusForm.value.city,
+      State: this.deliveryStatusForm.value.state,
+      Country: this.deliveryStatusForm.value.country
+    };
+
+    console.log(projectItem);
+
+    this.projectService.addProject(projectItem as ProjectItem)
+      .subscribe(result => {
+        console.log(result);
+        this.router.navigateByUrl("/project-list");
+      });
   }
 }
