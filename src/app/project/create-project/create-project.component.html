@@ -1,52 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <div class="row step-container">
-      <div class="col-2">
-        <div class="step-box" >
-          <div [ngClass]="{'step-active': currentStepCount >= 1}">
-            <i class="fa fa-2x fa-calendar"></i>
-          </div>
-          Project Details
-        </div>
-      </div>
-      <div class="col-1" [ngClass]="{'step-active': currentStepCount >= 1}">
-        <i class="fa fa-lg fa-angle-right"></i>
-      </div>
-      <div class="col-2">
-        <div class="step-box" >
-          <div [ngClass]="{'step-active': currentStepCount >= 2}">
-            <i class="fa fa-2x fa-tv"></i>
-          </div>
-          Project Settings
-        </div>
-      </div>
-      <div class="col-1">
-        <div [ngClass]="{'step-active': currentStepCount >= 2}">
-          <i class="fa fa-lg fa-angle-right"></i>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="step-box" >
-          <div [ngClass]="{'step-active': currentStepCount >= 3}">
-            <i class="fa fa-2x fa-shipping-fast"></i>
-          </div>
-          Delivery Status
-        </div>
-      </div>
-      <div class="col-1">
-        <div [ngClass]="{'step-active': currentStepCount >= 3}">
-          <i class="fa fa-lg fa-angle-right"></i>
-        </div>
-      </div>
-      <div class="col-2">
-        <div class="step-box" >
-          <div [ngClass]="{'step-active': currentStepCount >= 4}">
-            <i class="fa fa-2x fa-list"></i>
-          </div>
-          Review And Submit
-        </div>
-      </div>
-    </div>
+    <rh-form-steps></rh-form-steps>
   </div>
   <div class="col-12">
     <form

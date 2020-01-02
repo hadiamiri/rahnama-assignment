@@ -5,6 +5,10 @@ import {ProjectService} from "../../shared/project-service";
 import {ProjectItem} from "../../shared/interfaces/project-interfaces";
 import {Router} from "@angular/router";
 
+import {increment, decrement, reset} from "./state/create-project-form.action";
+import {Store} from "@ngrx/store";
+
+
 @Component({
   selector: 'rh-create-project',
   templateUrl: './create-project.component.html',
@@ -12,6 +16,11 @@ import {Router} from "@angular/router";
 })
 export class CreateProjectComponent implements OnInit {
 
+  constructor(private formBuilder: FormBuilder,
+              private projectService: ProjectService,
+              private router: Router,
+              private store: Store<{ stepCount: number }>) {
+  }
 
   ProjectDetailsStep: string = 'project-details';
   ProjectSettingsStep: string = 'project-settings';
@@ -20,17 +29,12 @@ export class CreateProjectComponent implements OnInit {
 
   Communications = [{type: 'Email', id: 1}, {type: 'SMS', id: 2}, {type: 'Phone', id: 3}];
 
-  currentStep: string;
-  currentStepCount: number;
   selectedCommunications: { key: string, value: boolean }[] = [];
 
-  constructor(private formBuilder: FormBuilder, private projectService: ProjectService,
-              private router: Router) {
-  }
+  currentStep: string;
 
   ngOnInit() {
     this.currentStep = this.ProjectDetailsStep;
-    this.currentStepCount = 1;
   }
 
   projectDetailForm = this.formBuilder.group({
@@ -93,24 +97,24 @@ export class CreateProjectComponent implements OnInit {
 
   goBack(step) {
     this.currentStep = step;
-    this.currentStepCount -= 1;
+    this.store.dispatch(decrement());
   }
 
   projectDetailFormSubmit() {
     this.currentStep = this.ProjectSettingsStep;
-    this.currentStepCount += 1;
+    this.store.dispatch(increment());
   }
 
   projectSettingsFormSubmit() {
     this.currentStep = this.DeliveryStatusStep;
-    this.currentStepCount += 1;
-    console.log(this.projectSettingsForm.value);
+
+    this.store.dispatch(increment());
   }
 
   projectDeliveryStatusFormSubmit() {
     this.currentStep = this.ReviewAndSubmit;
-    this.currentStepCount += 1;
-    console.log(this.deliveryStatusForm.value);
+
+    this.store.dispatch(increment());
   }
 
   finalSubmit() {
@@ -134,11 +138,9 @@ export class CreateProjectComponent implements OnInit {
       Country: this.deliveryStatusForm.value.country
     };
 
-    console.log(projectItem);
-
     this.projectService.addProject(projectItem as ProjectItem)
       .subscribe(result => {
-        console.log(result);
+        this.store.dispatch(reset());
         this.router.navigateByUrl("/project-list");
       });
   }

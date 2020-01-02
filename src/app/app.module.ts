@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {StoreModule} from "@ngrx/store";
+import {FormStepCounterReducer} from "./project/create-project/state/create-project-form.reducer";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +21,8 @@ import {ProjectService} from "./shared/project-service";
     AppRoutingModule,
     ProjectModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({stepCount: FormStepCounterReducer})
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]

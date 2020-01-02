@@ -4,10 +4,11 @@ import {RouterModule} from "@angular/router";
 import {ProjectListComponent} from './project-list/project-list.component';
 import {CreateProjectComponent} from './create-project/create-project.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FormStepsComponent } from './create-project/form-steps/form-steps.component';
 
 
 @NgModule({
-  declarations: [ProjectListComponent, CreateProjectComponent],
+  declarations: [ProjectListComponent, CreateProjectComponent, FormStepsComponent],
   exports: [
     ProjectListComponent
   ],
