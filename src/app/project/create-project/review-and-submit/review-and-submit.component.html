@@ -1,4 +1,36 @@
 <div class="row">
+
+  <div class="col-12">
+    <div class="summary-container">
+      <h4>
+        Review your Details and Submit
+      </h4>
+
+      <h5 class="detail-heading">Project Details</h5>
+      <div>{{projectFormService.projectDetailModel.ProjectName}}</div>
+      <div>{{projectFormService.projectDetailModel.ProjectOwner}}</div>
+      <div class="section-border">{{projectFormService.projectDetailModel.CustomerName}}</div>
+
+      <h5 class="detail-heading">
+        Project Settings
+      </h5>
+
+      <div>{{projectFormService.projectSettingsModel.EmailAddress}}</div>
+      <div>{{projectFormService.projectSettingsModel.Language}}</div>
+      <div class="section-border">{{projectFormService.projectSettingsModel.TimeZone}}</div>
+
+      <h5 class="detail-heading">
+        Delivery Address
+      </h5>
+
+      <div>{{projectFormService.projectDeliveryFormModel.AddressLine1}}</div>
+      <div>{{projectFormService.projectDeliveryFormModel.AddressLine1}}</div>
+      <div class="section-border">{{projectFormService.projectDeliveryFormModel.City}}</div>
+
+    </div>
+  </div>
+
+
   <div class="col-12 d-flex justify-content-between">
     <button type="button" class="btn btn-secondary" (click)="goBack()">
       Previous
