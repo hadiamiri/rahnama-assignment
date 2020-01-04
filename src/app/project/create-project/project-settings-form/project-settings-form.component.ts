@@ -44,7 +44,6 @@ export class ProjectSettingsFormComponent implements OnInit {
     const controls = [];
     this.Communications.map(item => {
       let selectedItem = this.selectedCommunications.filter(i => i.key == item.type)[0];
-      console.log(selectedItem);
       if (!!selectedItem && selectedItem.value) {
         controls.push(this.formBuilder.control(true))
       } else {
