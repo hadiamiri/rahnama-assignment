@@ -4,11 +4,15 @@ import {RouterModule} from "@angular/router";
 import {ProjectListComponent} from './project-list/project-list.component';
 import {CreateProjectComponent} from './create-project/create-project.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { FormStepsComponent } from './create-project/form-steps/form-steps.component';
+import {FormStepsComponent} from './create-project/form-steps/form-steps.component';
+import {ProjectDetailFormComponent} from './create-project/project-detail-form/project-detail-form.component';
+import { ProjectSettingsFormComponent } from './create-project/project-settings-form/project-settings-form.component';
+import { DeliveryStatusFormComponent } from './create-project/delivery-status-form/delivery-status-form.component';
+import { ReviewAndSubmitComponent } from './create-project/review-and-submit/review-and-submit.component';
 
 
 @NgModule({
-  declarations: [ProjectListComponent, CreateProjectComponent, FormStepsComponent],
+  declarations: [ProjectListComponent, CreateProjectComponent, FormStepsComponent, ProjectDetailFormComponent, ProjectSettingsFormComponent, DeliveryStatusFormComponent, ReviewAndSubmitComponent],
   exports: [
     ProjectListComponent
   ],

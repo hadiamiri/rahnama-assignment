@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {ProjectItem} from "./interfaces/project-interfaces";
+import {ProjectItem} from "../state/project.model";
 import {Observable} from "rxjs";
 
 @Injectable()

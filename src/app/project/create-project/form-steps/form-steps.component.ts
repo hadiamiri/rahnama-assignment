@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
+import {ProjectState} from "../../state/project.state";
+import {currentStepCountSelector} from "../../state/project.selector";
 
 @Component({
   selector: 'rh-form-steps',
@@ -8,23 +10,12 @@ import {select, Store} from "@ngrx/store";
   styleUrls: ['./form-steps.component.scss']
 })
 export class FormStepsComponent implements OnInit {
-
   currentStepObservable: Observable<number>;
-  currentStepCount: number;
 
-  constructor(private store: Store<{ stepCount: number }>) {
-    debugger;
-    this.currentStepObservable = store.pipe(select('stepCount'));
+  constructor(private store: Store<ProjectState>) {
   }
 
   ngOnInit() {
-    this.currentStepCount = 1;
-    this.currentStepObservable.subscribe(value => {
-        console.log(value);
-        this.currentStepCount = value;
-      }
-    );
+    this.currentStepObservable = this.store.pipe(select(currentStepCountSelector));
   }
-
-
 }

@@ -1,0 +1,59 @@
+<form (ngSubmit)="projectSettingsFormSubmit()"
+      [formGroup]="projectSettingsForm">
+
+  <div class="form-group row">
+    <label for="email-address" class="col-sm-2 col-form-label">Email Address</label>
+    <div class="input-group col-sm-10">
+      <div class="input-group-prepend">
+        <span class="input-group-text">@</span>
+      </div>
+      <input type="email" formControlName="emailAddress" class="form-control" id="email-address"
+             placeholder="Email Address">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="language" class="col-sm-2 col-form-label">Language</label>
+    <div class="col-sm-10">
+      <select formControlName="language" id="language" class="form-control">
+        <option value="en">English</option>
+        <option value="fr">French</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="time-zone" class="col-sm-2 col-form-label">Time Zone</label>
+    <div class="col-sm-10">
+      <select formControlName="timeZone" id="time-zone" class="form-control">
+        <option value="+330">Tehran</option>
+        <option value="-330">France</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <div class="col-sm-2">
+      Communications
+    </div>
+    <div class="col-sm-10">
+      <div class="form-check form-check-inline" *ngFor="let communication of communicationsArray.controls; let i = index">
+        <input class="form-check-input" (change)="communicationCheckboxChange()" #elem [formControl]="communication" type="checkbox" [id]="'communication' + i">
+        <label class="form-check-label" [for]="'communication' + i">{{this.Communications[i].type}}</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" (click)="goBack(ProjectDetailsStep)">
+        Previous
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="projectSettingsForm.invalid">
+        Next step
+      </button>
+    </div>
+  </div>
+</form>

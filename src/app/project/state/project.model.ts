@@ -18,15 +18,11 @@ export interface ProjectItem {
   Country: string
 }
 
-export enum Status {
-  Success,
-  Done,
-  Pending,
-  Canceled
+export enum ProjectFormsSteps {
+  ProjectDetail,
+  ProjectSetting,
+  ProjectDelivery,
+  ProjectReview
 }
 
-export enum ProjectType {
-  Customer,
-  Staff,
-  Company
-}
+

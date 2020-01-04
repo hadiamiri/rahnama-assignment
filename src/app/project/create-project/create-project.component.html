@@ -3,199 +3,21 @@
     <rh-form-steps></rh-form-steps>
   </div>
   <div class="col-12">
-    <form
-      *ngIf="currentStep === ProjectDetailsStep"
-      [formGroup]="projectDetailForm"
-      (ngSubmit)="projectDetailFormSubmit()">
-      <div class="form-group row">
-        <label for="project-name" class="col-sm-2 col-form-label">Project Name</label>
-        <div class="col-sm-10">
-          <input type="text" formControlName="projectName" class="form-control" id="project-name"
-                 placeholder="Project Name">
-        </div>
-      </div>
+    <rh-project-detail-form
+      *ngIf="(currentStepNameObservable | async) === projectFormSteps.ProjectDetail">
+    </rh-project-detail-form>
 
-      <div class="form-group row">
-        <label for="project-owner" class="col-sm-2 col-form-label">Project Owner</label>
-        <div class="col-sm-10">
-          <input type="text" formControlName="projectOwner" class="form-control" id="project-owner"
-                 placeholder="Project Owner">
-        </div>
-      </div>
+    <rh-project-settings-form
+      *ngIf="(currentStepNameObservable | async) === projectFormSteps.ProjectSetting">
+    </rh-project-settings-form>
 
-      <div class="form-group row">
-        <label for="customer-name" class="col-sm-2 col-form-label">Customer Name</label>
-        <div class="col-sm-10">
-          <input type="text" formControlName="customerName" class="form-control" id="customer-name"
-                 placeholder="Customer Name">
-        </div>
-      </div>
+    <rh-delivery-status-form
+      *ngIf="(currentStepNameObservable | async) === projectFormSteps.ProjectDelivery">
+    </rh-delivery-status-form>
 
-
-      <div class="form-group row">
-        <label for="contact-phone" class="col-sm-2 col-form-label">Contact Phone</label>
-        <div class="input-group col-sm-10">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="contact-phone-addon"><i class="fa fa-phone-alt"></i></span>
-          </div>
-          <input type="text" formControlName="contactPhone" class="form-control" id="contact-phone"
-                 placeholder="Contact Phone">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="email-address" class="col-sm-2 col-form-label">Email Address</label>
-        <div class="input-group col-sm-10">
-          <div class="input-group-prepend">
-            <span class="input-group-text">@</span>
-          </div>
-          <input type="email" formControlName="emailAddress" class="form-control" id="email-address"
-                 placeholder="Email Address">
-        </div>
-
-      </div>
-
-      <div class="form-group row">
-        <label for="company-site" class="col-sm-2 col-form-label">Company Site</label>
-        <div class="col-sm-10 input-group">
-          <input type="text" formControlName="companySite" class="form-control" id="company-site"
-                 placeholder="Company Site">
-          <div class="input-group-append">
-            <span class="input-group-text">
-              .com
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary" [disabled]="projectDetailForm.invalid">
-            Next step
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <form *ngIf="currentStep === ProjectSettingsStep"
-          (ngSubmit)="projectSettingsFormSubmit()"
-          [formGroup]="projectSettingsForm">
-
-      <div class="form-group row">
-        <label for="email-address" class="col-sm-2 col-form-label">Email Address</label>
-        <div class="input-group col-sm-10">
-          <div class="input-group-prepend">
-            <span class="input-group-text">@</span>
-          </div>
-          <input type="email" formControlName="emailAddress" class="form-control" id="email-address"
-                 placeholder="Email Address">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="language" class="col-sm-2 col-form-label">Language</label>
-        <div class="col-sm-10">
-          <select formControlName="language" id="language" class="form-control">
-            <option value="en">English</option>
-            <option value="fr">French</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="time-zone" class="col-sm-2 col-form-label">Time Zone</label>
-        <div class="col-sm-10">
-          <select formControlName="timeZone" id="time-zone" class="form-control">
-            <option value="+330">Tehran</option>
-            <option value="-330">France</option>
-          </select>
-        </div>
-      </div>
-
-
-      <div class="form-group row">
-        <div class="col-sm-2">
-          Communications
-        </div>
-        <div class="col-sm-10">
-          <div class="form-check form-check-inline" *ngFor="let communication of communicationsArray.controls; let i = index">
-            <input class="form-check-input" (change)="communicationCheckboxChange()" #elem [formControl]="communication" type="checkbox" [id]="'communication' + i">
-            <label class="form-check-label" [for]="'communication' + i">{{this.Communications[i].type}}</label>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col-12 d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary" (click)="goBack(ProjectDetailsStep)">
-            Previous
-          </button>
-          <button type="submit" class="btn btn-primary" [disabled]="projectSettingsForm.invalid">
-            Next step
-          </button>
-        </div>
-      </div>
-    </form>
-    <form *ngIf="currentStep === DeliveryStatusStep"
-          (ngSubmit)="projectDeliveryStatusFormSubmit()"
-          [formGroup]="deliveryStatusForm">
-
-      <div class="form-group">
-        <label for="address-address1">Address 1</label>
-        <input type="text" class="form-control" formControlName="addressLine1" id="address-address1" placeholder="Address 1">
-      </div>
-      <div class="form-group">
-        <label for="address-address1">Address 2</label>
-        <input type="text" class="form-control" formControlName="addressLine2" id="address-address2" placeholder="Address 2">
-      </div>
-
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="address-postcode">Postcode</label>
-          <input type="text" class="form-control" formControlName="postCode" id="address-postcode" placeholder="Postcode">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="address-city">City</label>
-          <input type="text" class="form-control" formControlName="city" id="address-city" placeholder="City">
-        </div>
-
-        <div class="form-group col-md-6">
-          <label for="address-state">State</label>
-          <input type="text" class="form-control" formControlName="state" id="address-state" placeholder="State">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="address-country">Country</label>
-          <select name="" formControlName="country" id="address-country" class="form-control">
-            <option selected value="Iran">Iran</option>
-            <option value="Iraq">Iraq</option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary" (click)="goBack(ProjectSettingsStep)">
-            Previous
-          </button>
-          <button type="submit" class="btn btn-primary" [disabled]="deliveryStatusForm.invalid">
-            Next step
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <div *ngIf="currentStep === ReviewAndSubmit">
-      <div class="row">
-        <div class="col-12 d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary" (click)="goBack(DeliveryStatusStep)">
-            Previous
-          </button>
-          <button type="button" (click)="finalSubmit()" class="btn btn-primary">
-            Submit
-          </button>
-        </div>
-      </div>
+    <div *ngIf="(currentStepNameObservable | async) === projectFormSteps.ProjectReview">
+      <rh-review-and-submit>
+      </rh-review-and-submit>
     </div>
   </div>
 </div>

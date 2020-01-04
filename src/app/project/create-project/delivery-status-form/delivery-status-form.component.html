@@ -1,0 +1,46 @@
+<form (ngSubmit)="projectDeliveryStatusFormSubmit()"
+      [formGroup]="deliveryStatusForm">
+
+  <div class="form-group">
+    <label for="address-address1">Address 1</label>
+    <input type="text" class="form-control" formControlName="addressLine1" id="address-address1" placeholder="Address 1">
+  </div>
+  <div class="form-group">
+    <label for="address-address1">Address 2</label>
+    <input type="text" class="form-control" formControlName="addressLine2" id="address-address2" placeholder="Address 2">
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="address-postcode">Postcode</label>
+      <input type="text" class="form-control" formControlName="postCode" id="address-postcode" placeholder="Postcode">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="address-city">City</label>
+      <input type="text" class="form-control" formControlName="city" id="address-city" placeholder="City">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="address-state">State</label>
+      <input type="text" class="form-control" formControlName="state" id="address-state" placeholder="State">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="address-country">Country</label>
+      <select name="" formControlName="country" id="address-country" class="form-control">
+        <option selected value="Iran">Iran</option>
+        <option value="Iraq">Iraq</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-secondary" (click)="goBack()">
+        Previous
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="deliveryStatusForm.invalid">
+        Next step
+      </button>
+    </div>
+  </div>
+</form>

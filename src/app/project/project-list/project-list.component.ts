@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectItem, ProjectType, Status} from "../../shared/interfaces/project-interfaces";
-import {ProjectService} from "../../shared/project-service";
+import {ProjectItem} from "../state/project.model";
+import {ProjectService} from "../project-service/project.service";
 
 @Component({
   selector: 'rh-project-list',
