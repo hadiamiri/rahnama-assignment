@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {atLeastOneValidator} from "../../../core/custom-validator";
 import {SetFormStepCount, SetFormStepName} from "../../state/project.action";
 import {ProjectFormsSteps} from "../../state/project.model";
 import {Store} from "@ngrx/store";
 import {ProjectState} from "../../state/project.state";
+import {ProjectFormService} from "../project-form-service/project-form.service";
 
 @Component({
   selector: 'rh-project-settings-form',
@@ -14,31 +15,38 @@ import {ProjectState} from "../../state/project.state";
 export class ProjectSettingsFormComponent implements OnInit {
 
   Communications = [{type: 'Email', id: 1}, {type: 'SMS', id: 2}, {type: 'Phone', id: 3}];
-
   selectedCommunications: { key: string, value: boolean }[] = [];
 
   projectSettingsForm = this.formBuilder.group({
-    emailAddress: ['', Validators.compose([
-      Validators.required, Validators.email
-    ])],
-    language: ['', Validators.required],
-    timeZone: ['', Validators.required],
+    emailAddress: [this.projectFormService.projectSettingsModel.EmailAddress,
+      Validators.compose([
+        Validators.required, Validators.email
+      ])],
+    language: [this.projectFormService.projectSettingsModel.Language,
+      Validators.required],
+    timeZone: [this.projectFormService.projectSettingsModel.TimeZone,
+      Validators.required],
     communications: this.buildCommunicationControls()
   });
 
-  constructor(private formBuilder: FormBuilder, private store: Store<ProjectState>) { }
+  constructor(private formBuilder: FormBuilder,
+              private projectFormService: ProjectFormService,
+              private store: Store<ProjectState>) {
+  }
 
   ngOnInit() {
   }
 
-
   buildCommunicationControls() {
+
+
     const controls =
-      this.Communications.map((c) => this.formBuilder.control(false));
+      this.Communications.map((c) =>
+        this.formBuilder.control(false)
+      );
 
     return this.formBuilder.array(controls, atLeastOneValidator());
   }
-
 
   get communicationsArray() {
     return this.projectSettingsForm.get('communications') as FormArray;
@@ -63,8 +71,13 @@ export class ProjectSettingsFormComponent implements OnInit {
   }
 
   projectSettingsFormSubmit() {
+    const formValue = this.projectSettingsForm.value;
 
-    console.log(this.projectSettingsForm.value);
+    this.projectFormService.projectSettingsModel.EmailAddress = formValue.emailAddress;
+    this.projectFormService.projectSettingsModel.Language = formValue.language;
+    this.projectFormService.projectSettingsModel.TimeZone = formValue.timeZone;
+    this.projectFormService.projectSettingsModel.Communications = formValue.communications;
+
     this.store.dispatch(SetFormStepCount({payload: 3}));
     this.store.dispatch(SetFormStepName({payload: ProjectFormsSteps.ProjectDelivery}));
   }
