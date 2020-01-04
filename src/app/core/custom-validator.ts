@@ -1,5 +1,8 @@
 import {AbstractControl, FormArray, ValidatorFn} from "@angular/forms";
 
+/**
+ * Custom validator for selecting at least on check box in forms
+ */
 export function atLeastOneValidator(): ValidatorFn {
 
   return function(control: AbstractControl) :  {[key: string]: any} | null{

@@ -1,3 +1,6 @@
+/**
+ * Intermediate model for retaining form data between steps.
+ */
 export class ProjectDeliveryModel {
   AddressLine1: string;
   AddressLine2: string;

@@ -4,6 +4,9 @@ import {select, Store} from "@ngrx/store";
 import {ProjectState} from "../../state/project.state";
 import {currentStepCountSelector} from "../../state/project.selector";
 
+/**
+ * Form Steps Component which highlights in which step we are
+ */
 @Component({
   selector: 'rh-form-steps',
   templateUrl: './form-steps.component.html',
