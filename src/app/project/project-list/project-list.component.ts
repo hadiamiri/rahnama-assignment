@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectItem} from "../state/project.model";
 import {ProjectService} from "../project-service/project.service";
+import {Observable} from "rxjs";
+import {ProjectState} from "../state/project.state";
+import {select, Store} from "@ngrx/store";
+import {LoadProjects} from "../state/project.action";
+import {projectListSelector} from "../state/project.selector";
 
 @Component({
   selector: 'rh-project-list',
@@ -9,20 +14,13 @@ import {ProjectService} from "../project-service/project.service";
 })
 export class ProjectListComponent implements OnInit {
 
-  projectList: ProjectItem[];
+  projects: Observable<ProjectItem[]>;
 
-  constructor(private projectService: ProjectService) {
+  constructor(private projectService: ProjectService, private store: Store<ProjectState>) {
+    this.projects = this.store.pipe(select(projectListSelector));
   }
 
   ngOnInit() {
-    this.getProjects();
+    this.store.dispatch(LoadProjects());
   }
-
-  getProjects() {
-    this.projectService.getProjects()
-      .subscribe(projects => {
-        this.projectList = projects
-      });
-  }
-
 }

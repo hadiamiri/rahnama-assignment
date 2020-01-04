@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 
 import {ProjectService} from "./project/project-service/project.service";
 import {ProjectReducer} from "./project/state/project.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {ProjectEffects} from "./project/state/project.effect";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {ProjectReducer} from "./project/state/project.reducer";
     ProjectModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot({projectState: ProjectReducer})
+    StoreModule.forRoot({projectState: ProjectReducer}),
+    EffectsModule.forRoot([ProjectEffects])
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]

@@ -16,12 +16,12 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let item of projectList">
+      <tr *ngFor="let item of projects | async">
         <td>{{item.ProjectName}}</td>
         <td>{{item.CustomerName}}</td>
         <td>{{item.ContactPhone}}</td>
-        <td>{{item.city}}</td>
-        <td>{{item.state}}</td>
+        <td>{{item.City}}</td>
+        <td>{{item.State}}</td>
       </tr>
       </tbody>
     </table>

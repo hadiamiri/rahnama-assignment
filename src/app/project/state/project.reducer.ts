@@ -1,6 +1,7 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import * as ProjectActions from './project.action';
 import {initialState, ProjectState} from "./project.state";
+import {Projects} from "@angular/cli/lib/config/schema";
 
 const reducer = createReducer(
   initialState,
@@ -14,6 +15,18 @@ const reducer = createReducer(
     return {
       ...state,
       CurrentStepName: payload
+    }
+  }),
+  on(ProjectActions.LoadProjectFail, (state: ProjectState) => {
+    return {
+      ...state,
+      Projects: []
+    }
+  }),
+  on(ProjectActions.LoadProjectsSuccess, (state: ProjectState, {payload}) => {
+    return {
+      ...state,
+      Projects: payload
     }
   })
 );
