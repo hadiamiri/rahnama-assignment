@@ -1,4 +1,4 @@
-# FrontendAssignment
+# Rahnama front-end assignemnt
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
@@ -6,22 +6,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+Run fake json server with `json-server --watch db.json`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## State management
+I have used `NgRx` version 8 for state management. There is `ProjectState` which contains list of projects
+and also some state for the multi step form named `CurrentStepCount` and `CurrentStepName`
 
-## Build
+Relevent actions are dispatched from various components and components are subscribed to changes on those actions.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`form-step.component` uses `CurrentStepCount` state to highlight various stages of form.
+`create-project.component` uses `CurrentStepName` to show specific form of data entry stages.
 
-## Running unit tests
+each of the sub form components dispatch state mutation data as we complete each form.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Reactive forms are used for implementing sub forms.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Project lists are retrieved with ngrx effects. 
