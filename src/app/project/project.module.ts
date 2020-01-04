@@ -23,7 +23,6 @@ import {ProjectFormService} from "./create-project/project-form-service/project-
   exports: [
     ProjectListComponent
   ],
-  providers: [ProjectFormService],
   imports: [
     CommonModule,
     RouterModule,

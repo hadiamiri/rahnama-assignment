@@ -4,11 +4,13 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {ProjectFormsSteps} from "../state/project.model";
 import {currentStepNameSelector} from "../state/project.selector";
+import {ProjectFormService} from "./project-form-service/project-form.service";
 
 @Component({
   selector: 'rh-create-project',
   templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.scss']
+  styleUrls: ['./create-project.component.scss'],
+  providers: [ProjectFormService]
 })
 export class CreateProjectComponent implements OnInit {
 
